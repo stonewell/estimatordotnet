@@ -18,28 +18,29 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Estimator.Core
+namespace Estimator.Core.Impl
 {
-    public class EstimationResultEventArgs
+    class EstimationContextImpl : EstimationContext
     {
-        private EstimationResult result_ = null;
+        #region Event
+        #endregion
 
-        public EstimationResultEventArgs(EstimationResult result)
+        #region Fields
+        #endregion
+
+        #region Constructors
+        public EstimationContextImpl()
         {
-            result_ = result;
+        }
+        #endregion
+
+        #region EstimationContext Members
+
+        public EstimationData GetEstimationData(EstimationCategory category, RuleIdentity ruleId)
+        {
+            throw new Exception("The method or operation is not implemented.");
         }
 
-        public EstimationResult Result { get { return result_; } }
-    }
-
-    public delegate void EstimationResultEventHandler(EstimationResultEventArgs args);
-
-    public interface Estimator
-    {
-        EstimationRuleSet RuleSet { get; }
-
-        bool PushEvent(EstimationEvent e);
-
-        event EstimationResultEventHandler OnEstimationResult;
+        #endregion
     }
 }

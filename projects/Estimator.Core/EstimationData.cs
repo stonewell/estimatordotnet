@@ -26,6 +26,11 @@ namespace Estimator.Core
         RuleIdentity RuleIdentity { get; }
         RuleRate RuleRate { get; }
 
-        EstimationResult Result { get; }
+        EstimationResult LastResult { get; }
+
+        void AddResult(EstimationResult result);
+        void ClearResult();
+
+        EstimationResultList AllResults { get; }
     }
 }

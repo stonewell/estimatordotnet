@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Estimator.Core.Impl;
 
 namespace Estimator.Core
 {
