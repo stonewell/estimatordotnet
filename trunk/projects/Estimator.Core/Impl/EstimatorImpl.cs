@@ -22,14 +22,55 @@ namespace Estimator.Core.Impl
 {
     class EstimatorImpl : Estimator
     {
+        #region Inner Classes
+        private class PushEventArgs
+        {
+            public PushEventArgs(EstimationContext c, EstimationEvent e)
+            {
+                Event = e;
+                Context = c;
+            }
+
+            public EstimationEvent Event;
+            public EstimationContext Context;
+        }
+
+        class RuleEventPusher
+        {
+            private EstimationRule rule_ = null;
+
+            public RuleEventPusher(EstimationRule rule)
+            {
+                rule_ = rule;
+            }
+
+            public void OnPushEvnt(PushEventArgs args)
+            {
+                rule_.HandleEvent(new EstimationArguments(args.Event, args.Context));
+            }
+        }
+        #endregion
+
+        #region Delegates
+        private delegate void PushEventHandler(PushEventArgs args);
+        #endregion
+
+        #region Events
+        private event PushEventHandler OnPushEvent;
+        #endregion
+
         #region Fields
         private EstimationRuleSet ruleSet_ = null;
+
+        private EstimationContext context_ = null;
         #endregion
 
         #region Constructors
         public EstimatorImpl(EstimationRuleSet ruleSet)
         {
             ruleSet_ = ruleSet;
+
+            HookEventHandler();
         }
         #endregion
 
@@ -42,11 +83,48 @@ namespace Estimator.Core.Impl
 
         public bool PushEvent(EstimationEvent e)
         {
-            throw new Exception("The method or operation is not implemented.");
+            if (OnPushEvent != null)
+            {
+                OnPushEvent.BeginInvoke(new PushEventArgs(context_, e), 
+                    new AsyncCallback(OnPushEventCallBack), 
+                    this);
+            }
+
+            return true;
         }
 
-        public event EstimationResultsEventHandler OnEstimationResults;
+        public event EstimationResultEventHandler OnEstimationResult;
 
+        #endregion
+
+        #region Methods
+        private void OnPushEventCallBack(IAsyncResult ar)
+        {
+            OnPushEvent.EndInvoke(ar);
+        }
+
+        private void UpdateEsitimationResult(EstimationResult result)
+        {
+            if (OnEstimationResult != null)
+            {
+                OnEstimationResult.BeginInvoke(new EstimationResultEventArgs(result),
+                    new AsyncCallback(OnEstimationResultCallback),
+                    this);
+            }
+        }
+
+        private void OnEstimationResultCallback(IAsyncResult ar)
+        {
+            OnEstimationResult.EndInvoke(ar);
+        }
+        
+        private void HookEventHandler()
+        {
+            foreach (EstimationRule rule in ruleSet_.Rules)
+            {
+                OnPushEvent += new PushEventHandler(new RuleEventPusher(rule).OnPushEvnt);
+            }
+        }
         #endregion
     }
 }

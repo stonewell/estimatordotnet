@@ -23,9 +23,5 @@ namespace Estimator.Core
     public interface EstimationContext
     {
         EstimationData GetEstimationData(EstimationCategory category, RuleIdentity ruleId);
-
-        void UpdateEstimationResult(EstimationResult result);
-
-        EstimationResultList Results { get; }
     }
 }
