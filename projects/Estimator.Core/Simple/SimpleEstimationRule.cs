@@ -34,7 +34,7 @@ namespace Estimator.Core.Simple
             get { throw new Exception("The method or operation is not implemented."); }
         }
 
-        public HandleEventResultEnum HandleEvent(EstimationArguments args)
+        public virtual HandleEventResultEnum HandleEvent(EstimationArguments args)
         {
             throw new Exception("The method or operation is not implemented.");
         }
