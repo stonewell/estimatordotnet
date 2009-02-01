@@ -18,16 +18,27 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Estimator.Core
+namespace Estimator.Core.Simple
 {
-    public interface EstimationContext
+    public class SimpleEstimationRule : EstimationRule
     {
-        EstimationData GetEstimationData(RuleIdentity ruleId);
+        #region EstimationRule Members
 
-        event AddResultHandler OnAddEstimationResult;
-        event RemoveResultHandler OnRemoveEstimationResult;
-        event UpdateRuleRateHandler OnRuleRateUpdate;
+        public RuleIdentity Identity
+        {
+            get { return SimpleRuleIdentity; }
+        }
 
-        EstimationEngine Engine { get; }
+        public SimpleRuleIdentity SimpleRuleIdentity
+        {
+            get { throw new Exception("The method or operation is not implemented."); }
+        }
+
+        public HandleEventResultEnum HandleEvent(EstimationArguments args)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        #endregion
     }
 }

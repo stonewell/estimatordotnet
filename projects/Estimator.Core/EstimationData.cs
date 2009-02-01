@@ -20,11 +20,48 @@ using System.Text;
 
 namespace Estimator.Core
 {
+    public class EstimationResultEventArgs
+    {
+        private EstimationResult result_ = null;
+
+        public EstimationResultEventArgs(EstimationResult result)
+        {
+            result_ = result;
+        }
+
+        public EstimationResult Result { get { return result_; } }
+    }
+
+    public class UpdateRuleRateEventArgs
+    {
+        private RuleRate oldRate_ = null;
+        private RuleRate newRate_ = null;
+
+        public UpdateRuleRateEventArgs(RuleRate oldRate, RuleRate newRate)
+        {
+            oldRate_ = oldRate;
+            newRate_ = newRate;
+        }
+
+        public RuleRate OldRate { get { return oldRate_; } }
+        public RuleRate NewRate { get { return newRate_; } }
+    }
+
+    public delegate void AddResultHandler(EstimationResultEventArgs args);
+    public delegate void RemoveResultHandler(EstimationResultEventArgs args);
+    public delegate void UpdateRuleRateHandler(UpdateRuleRateEventArgs args);
+
     public interface EstimationData
     {
+        event AddResultHandler OnAddResult;
+        event RemoveResultHandler OnRemoveResult;
+        event UpdateRuleRateHandler OnRuleRateUpdate;
+
         EstimationCategory Category { get; }
         RuleIdentity RuleIdentity { get; }
+
         RuleRate RuleRate { get; }
+        void UpdateRuleRate(RuleRate ruleRate);
 
         EstimationResult LastResult { get; }
 

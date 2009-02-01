@@ -20,26 +20,14 @@ using System.Text;
 
 namespace Estimator.Core
 {
-    public class EstimationResultEventArgs
-    {
-        private EstimationResult result_ = null;
-
-        public EstimationResultEventArgs(EstimationResult result)
-        {
-            result_ = result;
-        }
-
-        public EstimationResult Result { get { return result_; } }
-    }
-
-    public delegate void EstimationResultEventHandler(EstimationResultEventArgs args);
-
     public interface Estimator
     {
         EstimationRuleSet RuleSet { get; }
 
         bool PushEvent(EstimationEvent e);
 
-        event EstimationResultEventHandler OnEstimationResult;
+        event AddResultHandler OnAddEstimationResult;
+        event RemoveResultHandler OnRemoveEstimationResult;
+        event UpdateRuleRateHandler OnRuleRateUpdate;
     }
 }

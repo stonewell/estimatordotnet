@@ -18,16 +18,30 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Estimator.Core
+namespace Estimator.Core.Impl
 {
-    public interface EstimationContext
+    delegate void EngineChangedHandler(EstimationEngine oldEngine, EstimationEngine newEngine);
+
+    class EstimationBaseObj
     {
-        EstimationData GetEstimationData(RuleIdentity ruleId);
+        protected event EngineChangedHandler OnEngineChangedEvent;
 
-        event AddResultHandler OnAddEstimationResult;
-        event RemoveResultHandler OnRemoveEstimationResult;
-        event UpdateRuleRateHandler OnRuleRateUpdate;
+        private EstimationEngine engine_ = null;
 
-        EstimationEngine Engine { get; }
+        public EstimationEngine Engine
+        {
+            get { return engine_; }
+
+            set 
+            {
+                EstimationEngine oldEngine = engine_;
+                engine_ = value;
+
+                if (OnEngineChangedEvent != null)
+                {
+                    OnEngineChangedEvent(oldEngine, engine_);
+                }
+            }
+        }
     }
 }

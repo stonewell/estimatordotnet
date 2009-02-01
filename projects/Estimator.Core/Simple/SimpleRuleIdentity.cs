@@ -18,16 +18,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Estimator.Core
+namespace Estimator.Core.Simple
 {
-    public interface EstimationContext
+    public class SimpleRuleIdentity : RuleIdentity
     {
-        EstimationData GetEstimationData(RuleIdentity ruleId);
-
-        event AddResultHandler OnAddEstimationResult;
-        event RemoveResultHandler OnRemoveEstimationResult;
-        event UpdateRuleRateHandler OnRuleRateUpdate;
-
-        EstimationEngine Engine { get; }
     }
 }

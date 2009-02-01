@@ -24,30 +24,59 @@ namespace Estimator.Core
     public sealed class EstimationEngine
     {
         #region Fields
-        private static readonly EstimationEngine instance_ = null;
+        private readonly DB.DBManager dbManager_ = null;
         #endregion
 
         #region Constructors
-        private EstimationEngine()
+        public EstimationEngine()
         {
-        }
-
-        static EstimationEngine()
-        {
-            instance_ = new EstimationEngine();
+            dbManager_ = new DB.DBManager(this);
         }
         #endregion
 
         #region Properties
-        public static EstimationEngine Instance { get { return instance_; } }
+        internal DB.DBManager DatabaseManager { get { return dbManager_; } }
         #endregion
 
         #region Methods
-        public Estimator CreateEstimator(EstimationRuleSet ruleSet)
+        public void Initialize()
         {
-            return new EstimatorImpl(ruleSet);
+            dbManager_.Initialize();
         }
-        #endregion
 
+        public void Deinitialize()
+        {
+            dbManager_.Deinitialize();
+        }
+
+        public Estimator CreateEstimator(EstimationCategory category, EstimationRuleSet ruleSet)
+        {
+            Estimator estimator = new EstimatorImpl(category, ruleSet);
+
+            UpdateEstimationObjProperties(estimator);
+
+            return estimator;
+        }
+
+        private void UpdateEstimationObjProperties(object obj)
+        {
+            if (obj is EstimationBaseObj)
+            {
+                EstimationBaseObj baseObj = obj as EstimationBaseObj;
+
+                baseObj.Engine = this;
+            }
+        }
+
+        internal EstimationContext CreateContext(EstimationCategory category)
+        {
+            EstimationContext context = new EstimationContextImpl(category);
+
+            UpdateEstimationObjProperties(context);
+
+            return context;
+        }
+
+        #endregion
     }
 }
