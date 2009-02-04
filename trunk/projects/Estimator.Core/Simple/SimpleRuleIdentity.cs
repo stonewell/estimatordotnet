@@ -22,5 +22,22 @@ namespace Estimator.Core.Simple
 {
     public class SimpleRuleIdentity : RuleIdentity
     {
+        #region Fields
+        private int id_ = 0;
+        #endregion
+
+        #region Constructors
+        public SimpleRuleIdentity(int id)
+        {
+            id_ = id;
+        }
+        #endregion
+
+        #region Properties
+        public int IntId
+        {
+            get { return id_; }
+        }
+        #endregion
     }
 }

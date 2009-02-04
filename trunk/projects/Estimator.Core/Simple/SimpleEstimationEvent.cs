@@ -22,6 +22,11 @@ namespace Estimator.Core.Simple
 {
     public class SimpleEstimationEvent : EstimationEvent
     {
+        #region Fields
+        private SimpleEstimationCategory category_ = null;
+        private int value_ = 0;
+        #endregion
+
         #region EstimationEvent Members
 
         public EstimationCategory Category
@@ -31,7 +36,16 @@ namespace Estimator.Core.Simple
 
         public SimpleEstimationCategory SimpleCategory
         {
-            get { throw new Exception("The method or operation is not implemented."); }
+            get { return category_; }
+            set { category_ = value; }
+        }
+        #endregion
+
+        #region Properties
+        public int Value
+        {
+            get { return value_; }
+            set { value_ = value; }
         }
         #endregion
     }

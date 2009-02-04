@@ -22,5 +22,21 @@ namespace Estimator.Core.Simple
 {
     public class SimpleEstimationCategory : EstimationCategory
     {
+        #region Fields
+        private const string id_ = "SimpleCategory";
+        #endregion
+
+        #region Constructors
+        public SimpleEstimationCategory()
+        {
+        }
+        #endregion
+
+        #region Properties
+        public string Id
+        {
+            get { return id_; }
+        }
+        #endregion
     }
 }

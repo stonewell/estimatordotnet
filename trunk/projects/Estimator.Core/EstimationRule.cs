@@ -22,6 +22,9 @@ namespace Estimator.Core
 {
     public enum HandleEventResultEnum
     {
+        InvalidEvent,
+        InvalidContext,
+        OK,
     }
 
     public class EstimationArguments
