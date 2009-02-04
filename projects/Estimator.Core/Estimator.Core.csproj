@@ -61,6 +61,7 @@
     <Compile Include="RuleRate.cs" />
     <Compile Include="Simple\SimpleEstimationCategory.cs" />
     <Compile Include="Simple\SimpleEstimationEvent.cs" />
+    <Compile Include="Simple\SimpleEstimationResult.cs" />
     <Compile Include="Simple\SimpleEstimationRule.cs" />
     <Compile Include="Simple\SimpleRuleIdentity.cs" />
     <Compile Include="Simple\SimpleRuleRate.cs" />

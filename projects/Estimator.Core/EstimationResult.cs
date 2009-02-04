@@ -28,5 +28,9 @@ namespace Estimator.Core
     {
         EstimationCategory Category { get; }
         RuleIdentity RuleIdentity { get; }
+
+        string RawData { get; set; }
+
+        bool ResultMatch(EstimationEvent e);
     }
 }
