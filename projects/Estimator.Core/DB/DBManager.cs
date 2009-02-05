@@ -20,59 +20,29 @@ using System.Text;
 
 namespace Estimator.Core.DB
 {
-    class DBManager
+    interface DBManager
     {
-        #region Fields
-        private EstimationEngine engine_ = null;
-        #endregion
-
-        #region Constructors
-        public DBManager(EstimationEngine engine)
-        {
-            engine_ = engine;
-        }
+        #region Properties
+        EstimationEngine Engine { get; }
         #endregion
 
         #region Methods
-        public void Initialize()
-        {
-        }
+        void Initialize();
 
-        public EstimationData LoadEstimationData(EstimationCategory category,
-            RuleIdentity ruleId)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
+        EstimationData LoadEstimationData(EstimationCategory category,
+           RuleIdentity ruleId);
+
+        void Deinitialize();
+
+        void ClearResults(EstimationCategory category, RuleIdentity ruleId);
+
+        void UpdateRuleRate(RuleRate ruleRate);
+
+        EstimationResultList LoadResults(EstimationCategory category, RuleIdentity ruleId);
+
+        EstimationResult LoadLastResult(EstimationCategory category, RuleIdentity ruleId);
+
+        void AddResult(EstimationResult result);
         #endregion
-
-        internal void Deinitialize()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void ClearResults(EstimationCategory category_, RuleIdentity ruleId_)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void UpdateRuleRate(RuleRate ruleRate_)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal EstimationResultList LoadResults(EstimationCategory category_, RuleIdentity ruleId_)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal EstimationResult LoadLastResult(EstimationCategory category_, RuleIdentity ruleId_)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        internal void AddResult(EstimationResult result)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
     }
 }

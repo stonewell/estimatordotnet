@@ -38,5 +38,24 @@ namespace Estimator.Core.Simple
             get { return id_; }
         }
         #endregion
+
+        #region Override
+        public override bool Equals(object obj)
+        {
+            if (obj is SimpleEstimationCategory)
+            {
+                SimpleEstimationCategory category = obj as SimpleEstimationCategory;
+
+                return string.Compare(category.Id, Id) == 0;
+            }
+
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+        #endregion
     }
 }
