@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Estimator.Core.DB.Impl.Database {
+namespace Estimation.Core.DB.Impl.Database {
     
     
     /// <summary>

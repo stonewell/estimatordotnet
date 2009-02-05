@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Text;
 using Estimation.Core;
 
-namespace Estimator.Simple
+namespace Estimation.Simple
 {
     public class SimpleEstimationRule : EstimationRule
     {
@@ -36,7 +36,7 @@ namespace Estimator.Simple
 
         static SimpleEstimationRule()
         {
-            random_ = new Random(Convert.ToInt32(DateTime.Now.Ticks));
+            random_ = new Random(Convert.ToInt32(DateTime.Now.Ticks & 0x7FFFFFFF));
         }
         #endregion
 

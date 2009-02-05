@@ -7,8 +7,8 @@
     <ProjectGuid>{2D6808EF-C2EE-4647-9EE4-0F12307E7978}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Estimator.Simple</RootNamespace>
-    <AssemblyName>Estimator.Simple</AssemblyName>
+    <RootNamespace>Estimation</RootNamespace>
+    <AssemblyName>Estimation.Simple</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

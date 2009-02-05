@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Text;
 using Estimation.Core;
 
-namespace Estimator.Simple
+namespace Estimation.Simple
 {
     public class SimpleRuleRate : RuleRate
     {
