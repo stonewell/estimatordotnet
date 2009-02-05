@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9B3FF541
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSimpleEstimation", "tests\TestSimpleEstimation\TestSimpleEstimation.csproj", "{C5673229-6C9C-445D-AE56-1A22C4371748}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estimator.Simple", "projects\Estimator.Simple\Estimator.Simple.csproj", "{2D6808EF-C2EE-4647-9EE4-0F12307E7978}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estimation.Simple", "projects\Estimator.Simple\Estimation.Simple.csproj", "{2D6808EF-C2EE-4647-9EE4-0F12307E7978}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution

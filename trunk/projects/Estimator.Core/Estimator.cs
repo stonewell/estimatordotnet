@@ -29,5 +29,8 @@ namespace Estimation.Core
         event AddResultHandler OnAddEstimationResult;
         event RemoveResultHandler OnRemoveEstimationResult;
         event UpdateRuleRateHandler OnRuleRateUpdate;
+
+        void Initialize();
+        void Deinitialize();
     }
 }

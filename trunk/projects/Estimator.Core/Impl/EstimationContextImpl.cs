@@ -46,13 +46,13 @@ namespace Estimation.Core.Impl
             EstimationData data =
                 Engine.DatabaseManager.LoadEstimationData(category_, ruleId);
 
-            data.OnAddResult -= new AddResultHandler(data_OnAddResult);
-            data.OnRemoveResult -= new RemoveResultHandler(data_OnRemoveResult);
-            data.OnRuleRateUpdate -= new UpdateRuleRateHandler(data_OnRuleRateUpdate);
+            data.OnAddResult -= (data_OnAddResult);
+            data.OnRemoveResult -= (data_OnRemoveResult);
+            data.OnRuleRateUpdate -= (data_OnRuleRateUpdate);
 
-            data.OnAddResult += new AddResultHandler(data_OnAddResult);
-            data.OnRemoveResult += new RemoveResultHandler(data_OnRemoveResult);
-            data.OnRuleRateUpdate += new UpdateRuleRateHandler(data_OnRuleRateUpdate);
+            data.OnAddResult += (data_OnAddResult);
+            data.OnRemoveResult += (data_OnRemoveResult);
+            data.OnRuleRateUpdate += (data_OnRuleRateUpdate);
 
             return data;
         }
@@ -62,14 +62,15 @@ namespace Estimation.Core.Impl
             if (OnRuleRateUpdate != null)
             {
                 OnRuleRateUpdate.BeginInvoke(args,
-                    new AsyncCallback(OnRuleRateUpdateCallback),
-                    this);
+                    (OnRuleRateUpdateCallback),
+                    OnRuleRateUpdate);
             }
         }
 
         private void OnRuleRateUpdateCallback(IAsyncResult ar)
         {
-            OnRuleRateUpdate.EndInvoke(ar);
+            UpdateRuleRateHandler impl = ar.AsyncState as UpdateRuleRateHandler;
+            impl.EndInvoke(ar);
         }
 
         private void data_OnRemoveResult(EstimationResultEventArgs args)
@@ -77,14 +78,16 @@ namespace Estimation.Core.Impl
             if (OnRemoveEstimationResult != null)
             {
                 OnRemoveEstimationResult.BeginInvoke(args,
-                    new AsyncCallback(OnRemoveEstimationResultCallback),
-                    this);
+                    (OnRemoveEstimationResultCallback),
+                    OnRemoveEstimationResult);
             }
         }
 
         private void OnRemoveEstimationResultCallback(IAsyncResult ar)
         {
-            OnRemoveEstimationResult.EndInvoke(ar);
+            RemoveResultHandler impl = ar.AsyncState as RemoveResultHandler;
+
+            impl.EndInvoke(ar);
         }
 
         private void data_OnAddResult(EstimationResultEventArgs args)
@@ -92,14 +95,33 @@ namespace Estimation.Core.Impl
             if (OnAddEstimationResult != null)
             {
                 OnAddEstimationResult.BeginInvoke(args,
-                    new AsyncCallback(OnAddEstimationResultCallback),
-                    this);
+                    (OnAddEstimationResultCallback),
+                    OnAddEstimationResult);
             }
         }
 
         private void OnAddEstimationResultCallback(IAsyncResult ar)
         {
-            OnAddEstimationResult.EndInvoke(ar);
+            AddResultHandler d = ar.AsyncState as AddResultHandler;
+            
+            d.EndInvoke(ar);
+        }
+
+        public void Deinitialize(Estimator estimator)
+        {
+            foreach (EstimationRule rule in estimator.RuleSet.Rules)
+            {
+                EstimationData data =
+                    Engine.DatabaseManager.LoadEstimationData(category_, rule.Identity);
+
+                data.OnAddResult -= (data_OnAddResult);
+                data.OnRemoveResult -= (data_OnRemoveResult);
+                data.OnRuleRateUpdate -= (data_OnRuleRateUpdate);
+            }
+        }
+
+        public void Initialize(Estimator estimator)
+        {
         }
 
         #endregion

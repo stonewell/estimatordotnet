@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Estimator.Core")]
+[assembly: AssemblyTitle("Estimation.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Angel & Stone")]
-[assembly: AssemblyProduct("Estimator.Core")]
+[assembly: AssemblyProduct("Estimation.Core")]
 [assembly: AssemblyCopyright("Copyright © Angel & Stone 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

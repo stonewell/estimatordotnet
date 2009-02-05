@@ -56,7 +56,6 @@ namespace Estimation.Core.Impl
         #endregion
 
         #region Events
-        private event PushEventHandler OnPushEvent;
         #endregion
 
         #region Fields
@@ -64,6 +63,7 @@ namespace Estimation.Core.Impl
         private EstimationCategory category_ = null;
 
         private EstimationContext context_ = null;
+        private List<PushEventHandler> pushEventHandlerList_ = new List<PushEventHandler>();
         #endregion
 
         #region Constructors
@@ -88,11 +88,11 @@ namespace Estimation.Core.Impl
 
         public bool PushEvent(EstimationEvent e)
         {
-            if (OnPushEvent != null)
+            foreach(PushEventHandler handler in pushEventHandlerList_)
             {
-                OnPushEvent.BeginInvoke(new PushEventArgs(context_, e), 
-                    new AsyncCallback(OnPushEventCallBack), 
-                    this);
+                handler.BeginInvoke(new PushEventArgs(context_, e), 
+                    (OnPushEventCallBack),
+                    handler);
             }
 
             return true;
@@ -107,20 +107,28 @@ namespace Estimation.Core.Impl
         #region Methods
         private void OnPushEventCallBack(IAsyncResult ar)
         {
-            OnPushEvent.EndInvoke(ar);
+            PushEventHandler d = ar.AsyncState as PushEventHandler;
+            d.EndInvoke(ar);
         }
       
         private void HookEventHandler()
         {
             foreach (EstimationRule rule in ruleSet_.Rules)
             {
-                OnPushEvent += new PushEventHandler(new RuleEventPusher(rule).OnPushEvnt);
+                pushEventHandlerList_.Add(new PushEventHandler(new RuleEventPusher(rule).OnPushEvnt));
             }
         }
         
         private void EstimatorImpl_OnEngineChangedEvent(EstimationEngine oldEngine, EstimationEngine newEngine)
         {
+            if (context_ != null)
+            {
+                context_.Deinitialize(this);
+                context_ = null;
+            }
+
             context_ = Engine.CreateContext(category_);
+            context_.Initialize(this);
 
             context_.OnAddEstimationResult += new AddResultHandler(context__OnAddEstimationResult);
             context_.OnRemoveEstimationResult += new RemoveResultHandler(context__OnRemoveEstimationResult);
@@ -132,14 +140,15 @@ namespace Estimation.Core.Impl
             if (OnRuleRateUpdate != null)
             {
                 OnRuleRateUpdate.BeginInvoke(args,
-                    new AsyncCallback(OnRuleRateUpdateCallback),
-                    this);
+                    (OnRuleRateUpdateCallback),
+                    OnRuleRateUpdate);
             }
         }
 
         private void OnRuleRateUpdateCallback(IAsyncResult ar)
         {
-            OnRuleRateUpdate.EndInvoke(ar);
+            UpdateRuleRateHandler d = ar.AsyncState as UpdateRuleRateHandler;
+            d.EndInvoke(ar);
         }
 
         private void context__OnRemoveEstimationResult(EstimationResultEventArgs args)
@@ -147,14 +156,15 @@ namespace Estimation.Core.Impl
             if (OnRemoveEstimationResult != null)
             {
                 OnRemoveEstimationResult.BeginInvoke(args,
-                    new AsyncCallback(OnRemoveEstimationResultCallback),
-                    this);
+                    (OnRemoveEstimationResultCallback),
+                    OnRemoveEstimationResult);
             }
         }
 
         private void OnRemoveEstimationResultCallback(IAsyncResult ar)
         {
-            OnRemoveEstimationResult.EndInvoke(ar);
+            RemoveResultHandler d = ar.AsyncState as RemoveResultHandler;
+            d.EndInvoke(ar);
         }
 
         private void context__OnAddEstimationResult(EstimationResultEventArgs args)
@@ -162,14 +172,27 @@ namespace Estimation.Core.Impl
             if (OnAddEstimationResult != null)
             {
                 OnAddEstimationResult.BeginInvoke(args,
-                    new AsyncCallback(OnAddEstimationResultCallback),
-                    this);
+                    (OnAddEstimationResultCallback),
+                    OnAddEstimationResult);
             }
         }
 
         private void OnAddEstimationResultCallback(IAsyncResult ar)
         {
-            OnAddEstimationResult.EndInvoke(ar);
+            AddResultHandler d = ar.AsyncState as AddResultHandler;
+            d.EndInvoke(ar);
+        }
+
+        public void Initialize()
+        {
+        }
+
+        public void Deinitialize()
+        {
+            if (context_ != null)
+            {
+                context_.Deinitialize(this);
+            }
         }
         #endregion
     }

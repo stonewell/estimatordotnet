@@ -92,20 +92,23 @@ namespace Estimation.Core.Impl
                 if (OnAddResult != null)
                 {
                     OnAddResult.BeginInvoke(new EstimationResultEventArgs(result),
-                        new AsyncCallback(OnAddResultCallback),
-                        this);
+                        (OnAddResultCallback),
+                        OnAddResult);
                 }
             }
         }
 
         private void OnAddResultCallback(IAsyncResult ar)
         {
-            OnAddResult.EndInvoke(ar);
+            AddResultHandler impl = ar.AsyncState as AddResultHandler;
+
+            impl.EndInvoke(ar);
         }
 
         private void OnRuleRateUpdateCallback(IAsyncResult ar)
         {
-            OnRuleRateUpdate.EndInvoke(ar);
+            UpdateRuleRateHandler impl = ar.AsyncState as UpdateRuleRateHandler;
+            impl.EndInvoke(ar);
         }
 
         public void ClearResult()
@@ -117,8 +120,8 @@ namespace Estimation.Core.Impl
                     if (OnRemoveResult != null)
                     {
                         OnRemoveResult.BeginInvoke(new EstimationResultEventArgs(result),
-                            new AsyncCallback(OnRemoveResultCallback),
-                            this);
+                            (OnRemoveResultCallback),
+                            OnRemoveResult);
                     }
                 }
 
@@ -128,7 +131,9 @@ namespace Estimation.Core.Impl
 
         private void OnRemoveResultCallback(IAsyncResult ar)
         {
-            OnRemoveResult.EndInvoke(ar);
+            RemoveResultHandler impl = ar.AsyncState as RemoveResultHandler;
+
+            impl.EndInvoke(ar);
         }
 
         public EstimationResultList AllResults
@@ -143,7 +148,7 @@ namespace Estimation.Core.Impl
         {
             lock (locker_)
             {
-                bool rateUpdated = false;
+                bool rateUpdated = true;
                 RuleRate oldRate = ruleRate_;
                 ruleRate_ = ruleRate;
 
@@ -152,8 +157,8 @@ namespace Estimation.Core.Impl
                     Engine.DatabaseManager.UpdateRuleRate(ruleRate_);
 
                     OnRuleRateUpdate.BeginInvoke(new UpdateRuleRateEventArgs(oldRate, ruleRate_),
-                        new AsyncCallback(OnRuleRateUpdateCallback),
-                        this);
+                        (OnRuleRateUpdateCallback),
+                        OnRuleRateUpdate);
                 }
             }
         }

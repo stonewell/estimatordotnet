@@ -4,7 +4,7 @@ using System.Text;
 using Estimation.Core.Impl;
 using Estimation.Core;
 
-namespace Estimator.Simple
+namespace Estimation.Simple
 {
     public class SimpleEstimationResult : EstimationResult
     {

@@ -17,9 +17,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Estimator.Core.Impl;
+using Estimation.Core.Impl;
 
-namespace Estimator.Core.DB.Impl
+namespace Estimation.Core.DB.Impl
 {
     class MemoryDBManager : DBManager
     {
@@ -75,6 +75,8 @@ namespace Estimator.Core.DB.Impl
 
         public EstimationData LoadEstimationData(EstimationCategory category, RuleIdentity ruleId)
         {
+            EstimationDataImpl impl = null;
+
             if (database_.ContainsKey(category))
             {
                 if (database_[category].ContainsKey(ruleId))
@@ -83,14 +85,18 @@ namespace Estimator.Core.DB.Impl
                 }
                 else
                 {
-                    database_[category][ruleId] = new EstimationDataImpl(category, ruleId, null);
+                    impl = new EstimationDataImpl(category, ruleId, null);
                 }
             }
             else
             {
                 database_[category] = new Dictionary<RuleIdentity, EstimationData>();
-                database_[category][ruleId] = new EstimationDataImpl(category, ruleId, null);
+                impl = new EstimationDataImpl(category, ruleId, null);
             }
+
+            database_[category][ruleId] = impl;
+
+            impl.Engine = Engine;
 
             return database_[category][ruleId];
         }

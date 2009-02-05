@@ -29,5 +29,9 @@ namespace Estimation.Core
         event UpdateRuleRateHandler OnRuleRateUpdate;
 
         EstimationEngine Engine { get; }
+
+        void Deinitialize(Estimator estimator);
+
+        void Initialize(Estimator estimator);
     }
 }
