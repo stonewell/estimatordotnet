@@ -38,11 +38,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB\DBManager.cs" />
-    <Compile Include="DB\EstimationDB.Designer.cs">
+    <Compile Include="DB\Impl\Database\EstimationDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EstimationDB.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DB\Impl\MemoryDBManager.cs" />
     <Compile Include="EstimationContext.cs" />
     <Compile Include="EstimationData.cs" />
     <Compile Include="EstimationEngine.cs" />
@@ -67,15 +68,15 @@
     <Compile Include="Simple\SimpleRuleRate.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DB\EstimationDB.xsc">
+    <None Include="DB\Impl\Database\EstimationDB.xsc">
       <DependentUpon>EstimationDB.xsd</DependentUpon>
     </None>
-    <None Include="DB\EstimationDB.xsd">
+    <None Include="DB\Impl\Database\EstimationDB.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>EstimationDB.Designer.cs</LastGenOutput>
     </None>
-    <None Include="DB\EstimationDB.xss">
+    <None Include="DB\Impl\Database\EstimationDB.xss">
       <DependentUpon>EstimationDB.xsd</DependentUpon>
     </None>
   </ItemGroup>

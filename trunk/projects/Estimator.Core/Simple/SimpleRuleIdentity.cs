@@ -39,5 +39,24 @@ namespace Estimator.Core.Simple
             get { return id_; }
         }
         #endregion
+
+        #region Override
+        public override bool Equals(object obj)
+        {
+            if (obj is SimpleRuleIdentity)
+            {
+                SimpleRuleIdentity ruleId = obj as SimpleRuleIdentity;
+
+                return ruleId.id_ == id_;
+            }
+
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return id_.GetHashCode();
+        }
+        #endregion
     }
 }

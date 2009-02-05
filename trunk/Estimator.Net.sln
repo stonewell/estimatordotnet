@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estimator.Core", "projects\Estimator.Core\Estimator.Core.csproj", "{5DE25109-CBE4-4AED-BABA-D42A1CF87699}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{6C0CA214-AD86-4092-A9A2-B37CA4692831}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9B3FF541-11CA-4E37-A270-0365D774EC51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSimpleEstimation", "tests\TestSimpleEstimation\TestSimpleEstimation.csproj", "{C5673229-6C9C-445D-AE56-1A22C4371748}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -17,8 +23,16 @@ Global
 		{5DE25109-CBE4-4AED-BABA-D42A1CF87699}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DE25109-CBE4-4AED-BABA-D42A1CF87699}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DE25109-CBE4-4AED-BABA-D42A1CF87699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5673229-6C9C-445D-AE56-1A22C4371748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5673229-6C9C-445D-AE56-1A22C4371748}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5673229-6C9C-445D-AE56-1A22C4371748}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5673229-6C9C-445D-AE56-1A22C4371748}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5DE25109-CBE4-4AED-BABA-D42A1CF87699} = {6C0CA214-AD86-4092-A9A2-B37CA4692831}
+		{C5673229-6C9C-445D-AE56-1A22C4371748} = {9B3FF541-11CA-4E37-A270-0365D774EC51}
 	EndGlobalSection
 EndGlobal

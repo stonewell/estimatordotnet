@@ -30,7 +30,7 @@ namespace Estimator.Core
         #region Constructors
         public EstimationEngine()
         {
-            dbManager_ = new DB.DBManager(this);
+            dbManager_ = new DB.Impl.MemoryDBManager(this);
         }
         #endregion
 
