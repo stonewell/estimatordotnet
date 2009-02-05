@@ -17,9 +17,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Estimator.Core.Impl;
+using Estimation.Core.Impl;
 
-namespace Estimator.Core
+namespace Estimation.Core
 {
     public sealed class EstimationEngine
     {
