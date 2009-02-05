@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estimator.Core", "projects\Estimator.Core\Estimator.Core.csproj", "{5DE25109-CBE4-4AED-BABA-D42A1CF87699}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estimation.Core", "projects\Estimator.Core\Estimation.Core.csproj", "{5DE25109-CBE4-4AED-BABA-D42A1CF87699}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{6C0CA214-AD86-4092-A9A2-B37CA4692831}"
 EndProject

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Estimator.Core.Impl;
-using Estimator.Core;
+using Estimation.Core.Impl;
+using Estimation.Core;
 
 namespace Estimator.Simple
 {

@@ -17,11 +17,30 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Estimation.Core;
 
-namespace Estimation.Core
+namespace Estimator.Simple
 {
-    public interface EstimationEvent
+    public class SimpleEstimationRuleSet : EstimationRuleSet
     {
-        EstimationCategory Category { get; }
+        #region Fields
+        private EstimationRuleList rules_ = null;
+        #endregion
+
+        #region Constructors
+        public SimpleEstimationRuleSet(EstimationRuleList rules)
+        {
+            rules_ = rules;
+        }
+        #endregion
+
+        #region EstimationRuleSet Members
+
+        public EstimationRuleList Rules
+        {
+            get { return rules_; }
+        }
+
+        #endregion
     }
 }

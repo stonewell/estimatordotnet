@@ -7,8 +7,8 @@
     <ProjectGuid>{5DE25109-CBE4-4AED-BABA-D42A1CF87699}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Estimator.Core</RootNamespace>
-    <AssemblyName>Estimator.Core</AssemblyName>
+    <RootNamespace>Estimation.Core</RootNamespace>
+    <AssemblyName>Estimation.Core</AssemblyName>
     <SccProjectName>Svn</SccProjectName>
     <SccLocalPath>Svn</SccLocalPath>
     <SccAuxPath>Svn</SccAuxPath>

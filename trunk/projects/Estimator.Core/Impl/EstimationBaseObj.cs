@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Estimator.Core.Impl
+namespace Estimation.Core.Impl
 {
     delegate void EngineChangedHandler(EstimationEngine oldEngine, EstimationEngine newEngine);
 

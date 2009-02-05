@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Estimator.Core.Impl
+namespace Estimation.Core.Impl
 {
     class EstimatorImpl : EstimationBaseObj, Estimator
     {

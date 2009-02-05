@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Estimator.Core.DB
+namespace Estimation.Core.DB
 {
     interface DBManager
     {
