@@ -1,21 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Estimation.Simple;
 using Estimation.Core;
+using System.Drawing;
 
 namespace TestSimpleEstimation
 {
-    public class Info
-    {
-        public TextBox UpDown;
-        public ProgressBar Bar;
-    }
-
     public partial class Form1 : Form
     {
         private EstimationEngine engine_ = new EstimationEngine();
@@ -156,5 +149,11 @@ namespace TestSimpleEstimation
                 estimator.PushEvent(simpleEvent);
             }
         }
+    }
+
+    public class Info
+    {
+        public TextBox UpDown;
+        public ProgressBar Bar;
     }
 }

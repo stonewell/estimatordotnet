@@ -4,11 +4,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2D6808EF-C2EE-4647-9EE4-0F12307E7978}</ProjectGuid>
+    <ProjectGuid>{09211D90-7C5D-4C85-AC56-CEAEC2734EA7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Estimation</RootNamespace>
-    <AssemblyName>Estimation.Simple</AssemblyName>
+    <RootNamespace>Stock.Estimation.Net</RootNamespace>
+    <AssemblyName>Stock.Estimation.Net</AssemblyName>
     <SccProjectName>Svn</SccProjectName>
     <SccLocalPath>Svn</SccLocalPath>
     <SccAuxPath>Svn</SccAuxPath>
@@ -38,19 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Simple\SimpleEsitimationRuleSet.cs" />
-    <Compile Include="Simple\SimpleEstimationCategory.cs" />
-    <Compile Include="Simple\SimpleEstimationEvent.cs" />
-    <Compile Include="Simple\SimpleEstimationResult.cs" />
-    <Compile Include="Simple\SimpleEstimationRule.cs" />
-    <Compile Include="Simple\SimpleRuleIdentity.cs" />
-    <Compile Include="Simple\SimpleRuleRate.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Estimator.Core\Estimation.Core.csproj">
-      <Project>{5DE25109-CBE4-4AED-BABA-D42A1CF87699}</Project>
-      <Name>Estimation.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
