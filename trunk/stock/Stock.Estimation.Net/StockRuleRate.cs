@@ -31,6 +31,12 @@ namespace Stock.Estimator
         private long failCount_ = 0;
         #endregion
 
+		#region Constructors
+		public StockRuleRate()
+		{
+		}
+		#endregion
+		
         #region RuleRate Members
 
         public EstimationCategory Category
