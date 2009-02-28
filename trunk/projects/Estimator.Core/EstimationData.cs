@@ -69,5 +69,7 @@ namespace Estimation.Core
         void ClearResult();
 
         EstimationResultList AllResults { get; }
+
+        EstimationObjectMap Objects { get; }
     }
 }

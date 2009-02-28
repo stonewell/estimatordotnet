@@ -17,15 +17,30 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Estimation.Simple;
 using Estimation.Core;
 
 namespace Stock.Estimator
 {
-    public class StockRuleSet : SimpleEstimationRuleSet
+    public class StockRuleSet : EstimationRuleSet
     {
-        public StockRuleSet(EstimationRuleList rules) : base(rules)
+        #region Fields
+        private EstimationRuleList rules_ = null;
+        #endregion
+
+        #region Constructors
+        public StockRuleSet(EstimationRuleList rules)
         {
+            rules_ = rules;
         }
+        #endregion
+
+        #region EstimationRuleSet Members
+
+        public EstimationRuleList Rules
+        {
+            get { return rules_; }
+        }
+
+        #endregion
     }
 }

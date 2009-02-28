@@ -20,9 +20,12 @@ using System.Text;
 
 namespace Estimation.Core
 {
-    public interface RuleRate : EstimationObject
+    public interface EstimationObject
     {
-        EstimationCategory Category { get; }
-        RuleIdentity RuleIdentity { get; }
+        string RawData { get; set; }
+    }
+
+    public class EstimationObjectMap : Dictionary<string, EstimationObject>
+    {
     }
 }
