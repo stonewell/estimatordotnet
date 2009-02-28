@@ -7,8 +7,8 @@
     <ProjectGuid>{09211D90-7C5D-4C85-AC56-CEAEC2734EA7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Stock.Estimation.Net</RootNamespace>
-    <AssemblyName>Stock.Estimation.Net</AssemblyName>
+    <RootNamespace>Stock.Estimator</RootNamespace>
+    <AssemblyName>Stock.Estimation</AssemblyName>
     <SccProjectName>Svn</SccProjectName>
     <SccLocalPath>Svn</SccLocalPath>
     <SccAuxPath>Svn</SccAuxPath>
@@ -38,6 +38,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockCategory.cs" />
+    <Compile Include="StockEstimationResult.cs" />
+    <Compile Include="StockEvent.cs" />
+    <Compile Include="StockRule.cs" />
+    <Compile Include="StockRuleIdentity.cs" />
+    <Compile Include="StockRuleRate.cs" />
+    <Compile Include="StockRuleSet.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\projects\Estimator.Core\Estimation.Core.csproj">
+      <Project>{5DE25109-CBE4-4AED-BABA-D42A1CF87699}</Project>
+      <Name>Estimation.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\projects\Estimator.Simple\Estimation.Simple.csproj">
+      <Project>{2D6808EF-C2EE-4647-9EE4-0F12307E7978}</Project>
+      <Name>Estimation.Simple</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -17,18 +17,15 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Estimation.Simple;
+using Estimation.Core;
 
-namespace Estimation.Core
+namespace Stock.Estimator
 {
-    public class EstimationResultList : List<EstimationResult>
+    public class StockRuleSet : SimpleEstimationRuleSet
     {
-    }
-
-    public interface EstimationResult
-    {
-        EstimationCategory Category { get; }
-        RuleIdentity RuleIdentity { get; }
-
-        string RawData { get; set; }
+        public StockRuleSet(EstimationRuleList rules) : base(rules)
+        {
+        }
     }
 }
