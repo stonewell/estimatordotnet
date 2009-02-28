@@ -30,6 +30,8 @@ namespace Estimation.Core.Impl
         private EstimationResult lastResult_ = null;
 
         private object locker_ = new object();
+
+        private EstimationObjectMap objects_ = new EstimationObjectMap();
         #endregion
 
         #region Constructors
@@ -162,6 +164,12 @@ namespace Estimation.Core.Impl
                 }
             }
         }
+
+        public EstimationObjectMap Objects
+        {
+            get { return objects_; }
+        }
+
         #endregion
 
         #region Methods

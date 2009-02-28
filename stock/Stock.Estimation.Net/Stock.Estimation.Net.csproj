@@ -51,10 +51,6 @@
       <Project>{5DE25109-CBE4-4AED-BABA-D42A1CF87699}</Project>
       <Name>Estimation.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\projects\Estimator.Simple\Estimation.Simple.csproj">
-      <Project>{2D6808EF-C2EE-4647-9EE4-0F12307E7978}</Project>
-      <Name>Estimation.Simple</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

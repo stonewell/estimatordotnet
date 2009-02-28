@@ -48,6 +48,7 @@
     <Compile Include="EstimationData.cs" />
     <Compile Include="EstimationEngine.cs" />
     <Compile Include="EstimationEvent.cs" />
+    <Compile Include="EstimationObject.cs" />
     <Compile Include="EstimationResult.cs" />
     <Compile Include="EstimationRule.cs" />
     <Compile Include="EstimationCategory.cs" />

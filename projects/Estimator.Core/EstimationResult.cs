@@ -24,11 +24,9 @@ namespace Estimation.Core
     {
     }
 
-    public interface EstimationResult
+    public interface EstimationResult : EstimationObject
     {
         EstimationCategory Category { get; }
         RuleIdentity RuleIdentity { get; }
-
-        string RawData { get; set; }
     }
 }

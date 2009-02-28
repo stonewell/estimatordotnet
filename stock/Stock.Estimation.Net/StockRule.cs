@@ -43,6 +43,9 @@ namespace Stock.Estimator
 
         public HandleEventResultEnum HandleEvent(EstimationArguments args)
         {
+            if (!(args.Event is StockEvent))
+                return HandleEventResultEnum.InvalidEvent;
+
             throw new Exception("The method or operation is not implemented.");
         }
 
