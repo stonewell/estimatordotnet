@@ -46,9 +46,58 @@ namespace Stock.Estimator
             if (!(args.Event is StockEvent))
                 return HandleEventResultEnum.InvalidEvent;
 
-            throw new Exception("The method or operation is not implemented.");
+			StockEvent stockEvent = args.Event as StockEvent;
+
+			EstimationContext context = args.Context;
+
+			EstimationData data = context.GetEstimationData(identity_);
+
+			StockRuleRate rate = new StockRuleRate();
+			rate.StockRuleIdentity = identity_;
+			rate.StockCategory = stockEvent.StockCategory;
+
+			if (data.RuleRate != null)
+			{
+				rate.RawData = data.RuleRate.RawData;
+			}
+			
+			if (data.LastResult != null)
+			{
+				if (MatchResult(stockEvent, data.LastResult))
+				{
+					rate.SuccessCount ++;
+				}
+				else
+				{
+					rate.FailCount ++;
+				}
+
+				data.UpdateRuleRate(rate);
+			}
+
+			StockEstimationResult result = null;
+			
+			if (TryGenerateResult(stockEvent, data, out result))
+			{
+				data.AddResult(result);
+				data.UpdateRuleRate(rate);
+			}
+			
+            return HandleEventResultEnum.OK;
         }
 
         #endregion
+
+		#region Methods
+		virtual protected bool MatchResult(StockEvent stockEvent, EstimationResult result)
+		{
+            throw new Exception("The method or operation is not implemented.");
+		}
+
+		virtual protected bool TryGenerateResult(StockEvent stockEvnt, EstimationData data , out StockEstimationResult result)
+		{
+            throw new Exception("The method or operation is not implemented.");
+		}
+		#endregion
     }
 }

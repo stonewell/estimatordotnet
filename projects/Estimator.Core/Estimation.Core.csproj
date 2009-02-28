@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -39,8 +40,6 @@
   <ItemGroup>
     <Compile Include="DB\DBManager.cs" />
     <Compile Include="DB\Impl\Database\EstimationDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>EstimationDB.xsd</DependentUpon>
     </Compile>
     <Compile Include="DB\Impl\MemoryDBManager.cs" />
@@ -69,7 +68,6 @@
     <None Include="DB\Impl\Database\EstimationDB.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>EstimationDB.Designer.cs</LastGenOutput>
     </None>
     <None Include="DB\Impl\Database\EstimationDB.xss">
       <DependentUpon>EstimationDB.xsd</DependentUpon>
