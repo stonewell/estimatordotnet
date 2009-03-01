@@ -26,34 +26,6 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_TCategory_TData" ZOrder="6" LineWidth="11">
-      <RoutePoints>
-        <Point>
-          <X>744</X>
-          <Y>121</Y>
-        </Point>
-        <Point>
-          <X>744</X>
-          <Y>313</Y>
-        </Point>
-      </RoutePoints>
-    </Connector>
-    <Connector ID="DesignRelation:FK_TCategory_TRuleRate" ZOrder="5" LineWidth="11">
-      <RoutePoints>
-        <Point>
-          <X>821</X>
-          <Y>121</Y>
-        </Point>
-        <Point>
-          <X>821</X>
-          <Y>224</Y>
-        </Point>
-        <Point>
-          <X>881</X>
-          <Y>224</Y>
-        </Point>
-      </RoutePoints>
-    </Connector>
     <Connector ID="DesignRelation:FK_TRuleIdentity_TData" ZOrder="4" LineWidth="11">
       <RoutePoints>
         <Point>
@@ -70,6 +42,18 @@
         </Point>
       </RoutePoints>
     </Connector>
+    <Connector ID="DesignRelation:FK_TCategory_TData" ZOrder="6" LineWidth="11">
+      <RoutePoints>
+        <Point>
+          <X>744</X>
+          <Y>121</Y>
+        </Point>
+        <Point>
+          <X>744</X>
+          <Y>313</Y>
+        </Point>
+      </RoutePoints>
+    </Connector>
     <Connector ID="DesignRelation:FK_TRuleIdentity_TRuleRate" ZOrder="3" LineWidth="11">
       <RoutePoints>
         <Point>
@@ -79,6 +63,22 @@
         <Point>
           <X>881</X>
           <Y>275</Y>
+        </Point>
+      </RoutePoints>
+    </Connector>
+    <Connector ID="DesignRelation:FK_TCategory_TRuleRate" ZOrder="5" LineWidth="11">
+      <RoutePoints>
+        <Point>
+          <X>821</X>
+          <Y>121</Y>
+        </Point>
+        <Point>
+          <X>821</X>
+          <Y>224</Y>
+        </Point>
+        <Point>
+          <X>881</X>
+          <Y>224</Y>
         </Point>
       </RoutePoints>
     </Connector>

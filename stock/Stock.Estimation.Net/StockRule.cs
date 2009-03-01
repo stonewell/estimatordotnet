@@ -21,7 +21,7 @@ using Estimation.Core;
 
 namespace Stock.Estimator
 {
-    public class StockRule : EstimationRule
+    public abstract class StockRule : EstimationRule
     {
         #region Fields
         private StockRuleIdentity identity_ = null;
@@ -89,15 +89,9 @@ namespace Stock.Estimator
         #endregion
 
 		#region Methods
-		virtual protected bool MatchResult(StockEvent stockEvent, EstimationResult result)
-		{
-            throw new Exception("The method or operation is not implemented.");
-		}
+		abstract protected bool MatchResult(StockEvent stockEvent, EstimationResult result);
 
-		virtual protected bool TryGenerateResult(StockEvent stockEvnt, EstimationData data , out StockEstimationResult result)
-		{
-            throw new Exception("The method or operation is not implemented.");
-		}
+        abstract protected bool TryGenerateResult(StockEvent stockEvnt, EstimationData data, out StockEstimationResult result);
 		#endregion
     }
 }

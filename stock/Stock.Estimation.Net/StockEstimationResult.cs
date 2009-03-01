@@ -27,9 +27,7 @@ namespace Stock.Estimator
         private StockCategory category_ = null;
         private StockRuleIdentity identity_ = null;
 
-        private double lowest_ = 0.0f;
-        private double highest_ = 0.0f;
-        private double final_ = 0.0f;
+        private StockEvent event_ = null;
 
         private long goingUpRate_ = 0;
         private long goingDownRate_ = 0;
@@ -65,11 +63,12 @@ namespace Stock.Estimator
         {
             get
             {
+                if (event_ == null)
+                    throw new ApplicationException("Invalid StockEvent");
+
                 StringBuilder sb = new StringBuilder();
-            
-                sb.Append(highest_).Append("|");
-                sb.Append(lowest_).Append("|");
-                sb.Append(final_).Append("|");
+
+                sb.Append(event_.RawData).Append(";");
                 sb.Append(goingDownRate_).Append("|");
                 sb.Append(goingUpRate_).Append("|");
                 sb.Append(priceRangeSet_).Append("|");
@@ -84,28 +83,29 @@ namespace Stock.Estimator
                 if (string.IsNullOrEmpty(value))
                     throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
 
-                string[] parts = value.Split('|');
+                string[] parts = value.Split(';');
 
-                if (parts.Length < 8)
-                    throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
-
-                if (!double.TryParse(parts[0], out highest_))
-                    throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
-                if (!double.TryParse(parts[1], out lowest_))
-                    throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
-                if (!double.TryParse(parts[2], out final_))
+                if (parts.Length < 2)
                     throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
 
-                if (!long.TryParse(parts[3], out goingDownRate_))
-                    throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
-                if (!long.TryParse(parts[4], out goingUpRate_))
+                event_ = new StockEvent();
+                event_.RawData = parts[0];
+
+                parts = parts[1].Split('|');
+
+                if (parts.Length < 5)
                     throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
 
-                if (!bool.TryParse(parts[5], out priceRangeSet_))
+                if (!long.TryParse(parts[0], out goingDownRate_))
                     throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
-                if (!double.TryParse(parts[6], out maxPrice_))
+                if (!long.TryParse(parts[1], out goingUpRate_))
                     throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
-                if (!double.TryParse(parts[7], out minPrice_))
+
+                if (!bool.TryParse(parts[2], out priceRangeSet_))
+                    throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
+                if (!double.TryParse(parts[3], out maxPrice_))
+                    throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
+                if (!double.TryParse(parts[4], out minPrice_))
                     throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
             }
         }
@@ -140,22 +140,10 @@ namespace Stock.Estimator
             get { return minPrice_; }
         }
 
-        public double Lowest
+        public StockEvent StockEvent
         {
-            get { return lowest_; }
-            set { lowest_ = value; }
-        }
-
-        public double Highest
-        {
-            get { return highest_; }
-            set { highest_ = value; }
-        }
-
-        public double Final
-        {
-            get { return final_; }
-            set { final_ = value; }
+            get { return event_; }
+            set { event_ = value; }
         }
         #endregion
 
