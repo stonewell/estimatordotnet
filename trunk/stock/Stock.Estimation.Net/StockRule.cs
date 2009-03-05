@@ -38,6 +38,11 @@ namespace Stock.Estimator
 
         public RuleIdentity Identity
         {
+            get { return StockRuleIdentity; }
+        }
+
+        public StockRuleIdentity StockRuleIdentity
+        {
             get { return identity_; }
         }
 
@@ -76,12 +81,16 @@ namespace Stock.Estimator
 			}
 
 			StockEstimationResult result = null;
-			
-			if (TryGenerateResult(stockEvent, data, out result))
-			{
-				data.AddResult(result);
-				data.UpdateRuleRate(rate);
-			}
+
+            if (TryGenerateResult(stockEvent, data, out result))
+            {
+                data.AddResult(result);
+                data.UpdateRuleRate(rate);
+            }
+            else
+            {
+                data.AddResult(null);
+            }
 			
             return HandleEventResultEnum.OK;
         }
@@ -89,7 +98,36 @@ namespace Stock.Estimator
         #endregion
 
 		#region Methods
-		abstract protected bool MatchResult(StockEvent stockEvent, EstimationResult result);
+        virtual protected bool MatchResult(StockEvent stockEvent, EstimationResult result)
+        {
+            StockEstimationResult stockResult = new StockEstimationResult();
+            stockResult.RawData = result.RawData;
+
+            bool match = false;
+
+            if (stockResult.GoingUpRate > 0 && stockEvent.Final > stockResult.StockEvent.Final)
+                match = true;
+
+            if (stockResult.GoingDownRate > 0 && stockEvent.Final < stockResult.StockEvent.Final)
+                match = true;
+
+            if (stockResult.GoingDownRate == 0 &&
+                stockResult.GoingUpRate == 0 &&
+                stockEvent.Final == stockResult.StockEvent.Final)
+            {
+                match = true;
+            }
+
+            if (stockResult.PriceRangeSet)
+            {
+                if (stockEvent.Final >= stockResult.MinPrice &&
+                    stockEvent.Final <= stockResult.MaxPrice)
+                {
+                    match = true;
+                }
+            }
+            return match;
+        }
 
         abstract protected bool TryGenerateResult(StockEvent stockEvnt, EstimationData data, out StockEstimationResult result);
 		#endregion

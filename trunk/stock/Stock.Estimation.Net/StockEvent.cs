@@ -25,6 +25,8 @@ namespace Stock.Estimator
     {
         #region Fields
         private StockCategory category_ = null;
+
+        private DateTime dateTime_ = DateTime.Now;
  
         private double lowest_ = 0.0f;
         private double highest_ = 0.0f;
@@ -69,6 +71,12 @@ namespace Stock.Estimator
         {
             get { return begin_; }
             set { begin_ = value; }
+        }
+
+        public DateTime EventDateTime
+        {
+            get { return dateTime_; }
+            set { dateTime_ = value; }
         }
         #endregion
 
@@ -120,6 +128,11 @@ namespace Stock.Estimator
         public bool IsYin
         {
             get { return final_ < begin_; }
+        }
+
+        public bool IsHorz
+        {
+            get { return final_ == begin_; }
         }
 
         public bool WithUpShadow
