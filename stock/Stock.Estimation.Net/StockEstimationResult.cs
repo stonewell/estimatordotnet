@@ -47,6 +47,7 @@ namespace Stock.Estimator
         public StockCategory StockCategory
         {
             get { return category_; }
+            set { category_ = value; }
         }
 
         public RuleIdentity RuleIdentity
@@ -57,6 +58,7 @@ namespace Stock.Estimator
         public StockRuleIdentity StockRuleIdentity
         {
             get { return identity_; }
+            set { identity_ = value; }
         }
 
         public string RawData

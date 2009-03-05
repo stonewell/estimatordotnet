@@ -28,4 +28,46 @@ namespace Estimation.Core
     public class EstimationObjectMap : Dictionary<string, EstimationObject>
     {
     }
+
+    public class EstimationIntObject : EstimationObject
+    {
+        #region Fields
+        private int value_ = 0;
+        #endregion
+
+        #region Constructors
+        public EstimationIntObject()
+        {
+        }
+
+        public EstimationIntObject(int val)
+        {
+            value_ = val;
+        }
+        #endregion
+
+        #region EstimationObject Members
+
+        public string RawData
+        {
+            get
+            {
+                return value_.ToString();
+            }
+            set
+            {
+                int.TryParse(value, out value_);
+            }
+        }
+
+        #endregion
+
+        #region Properties
+        public int IntValue
+        {
+            get { return value_; }
+            set { value_ = value; }
+        }
+        #endregion
+    }
 }
