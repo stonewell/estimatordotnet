@@ -1,0 +1,1 @@
+Stock\StockData\bin\StockData -id %1 -path d:\local\new_zszq\vipdoc -lday | tests\TestStockEstimator\bin\Debug\TestStockEstimator.exe
