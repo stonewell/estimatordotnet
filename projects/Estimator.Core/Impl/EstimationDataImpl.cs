@@ -32,6 +32,8 @@ namespace Estimation.Core.Impl
         private object locker_ = new object();
 
         private EstimationObjectMap objects_ = new EstimationObjectMap();
+
+        private bool eventHandlerSet_ = false;
         #endregion
 
         #region Constructors
@@ -170,6 +172,11 @@ namespace Estimation.Core.Impl
             get { return objects_; }
         }
 
+        public bool EventHandlerSet
+        {
+            get { return eventHandlerSet_; }
+            set { eventHandlerSet_ = value; }
+        }
         #endregion
 
         #region Methods

@@ -57,39 +57,44 @@ namespace Stock.Estimator
 
 			EstimationData data = context.GetEstimationData(identity_);
 
-			StockRuleRate rate = new StockRuleRate();
-			rate.StockRuleIdentity = identity_;
-			rate.StockCategory = stockEvent.StockCategory;
-
-			if (data.RuleRate != null)
-			{
-				rate.RawData = data.RuleRate.RawData;
-			}
-			
-			if (data.LastResult != null)
-			{
-				if (MatchResult(stockEvent, data.LastResult))
-				{
-					rate.SuccessCount ++;
-				}
-				else
-				{
-					rate.FailCount ++;
-				}
-
-				data.UpdateRuleRate(rate);
-			}
-
-			StockEstimationResult result = null;
-
-            if (TryGenerateResult(stockEvent, data, out result))
+            //lock (data)
             {
-                data.AddResult(result);
-                data.UpdateRuleRate(rate);
-            }
-            else
-            {
-                data.AddResult(null);
+                //System.Console.Error.WriteLine("+++Date: {0}", stockEvent.EventDateTime);
+
+                StockRuleRate rate = new StockRuleRate();
+                rate.StockRuleIdentity = identity_;
+                rate.StockCategory = stockEvent.StockCategory;
+
+                if (data.RuleRate != null)
+                {
+                    rate.RawData = data.RuleRate.RawData;
+                }
+
+                if (data.LastResult != null)
+                {
+                    if (MatchResult(stockEvent, data.LastResult))
+                    {
+                        rate.SuccessCount++;
+                    }
+                    else
+                    {
+                        rate.FailCount++;
+                    }
+
+                    data.UpdateRuleRate(rate);
+                }
+
+                StockEstimationResult result = null;
+
+                if (TryGenerateResult(stockEvent, data, out result))
+                {
+                    data.AddResult(result);
+                    data.UpdateRuleRate(rate);
+                }
+                else
+                {
+                    data.AddResult(null);
+                }
             }
 			
             return HandleEventResultEnum.OK;

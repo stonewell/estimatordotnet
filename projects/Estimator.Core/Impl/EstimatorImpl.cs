@@ -88,11 +88,16 @@ namespace Estimation.Core.Impl
 
         public bool PushEvent(EstimationEvent e)
         {
-            foreach(PushEventHandler handler in pushEventHandlerList_)
+            //foreach(PushEventHandler handler in pushEventHandlerList_)
+            //{
+            //    handler.BeginInvoke(new PushEventArgs(context_, e), 
+            //        (OnPushEventCallBack),
+            //        handler);
+            //}
+
+            foreach (EstimationRule rule in ruleSet_.Rules)
             {
-                handler.BeginInvoke(new PushEventArgs(context_, e), 
-                    (OnPushEventCallBack),
-                    handler);
+                rule.HandleEvent(new EstimationArguments(e, context_));
             }
 
             return true;
