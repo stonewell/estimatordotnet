@@ -88,6 +88,7 @@ namespace Stock.Estimator
             {
                 StringBuilder sb = new StringBuilder();
 
+                sb.Append(dateTime_).Append("|");
                 sb.Append(highest_).Append("|");
                 sb.Append(lowest_).Append("|");
                 sb.Append(final_).Append("|");
@@ -103,16 +104,18 @@ namespace Stock.Estimator
 
                 string[] parts = value.Split('|');
 
-                if (parts.Length < 4)
+                if (parts.Length < 5)
                     throw new ApplicationException("Invalid raw data for StockEvent:" + value);
 
-                if (!double.TryParse(parts[0], out highest_))
+                if (!DateTime.TryParse(parts[0], out dateTime_))
                     throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
-                if (!double.TryParse(parts[1], out lowest_))
+                if (!double.TryParse(parts[1], out highest_))
                     throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
-                if (!double.TryParse(parts[2], out final_))
+                if (!double.TryParse(parts[2], out lowest_))
                     throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
-                if (!double.TryParse(parts[2], out begin_))
+                if (!double.TryParse(parts[3], out final_))
+                    throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
+                if (!double.TryParse(parts[4], out begin_))
                     throw new ApplicationException("Invalid raw data for StockEstimationResult:" + value);
             }
         }

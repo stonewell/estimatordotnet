@@ -71,5 +71,7 @@ namespace Estimation.Core
         EstimationResultList AllResults { get; }
 
         EstimationObjectMap Objects { get; }
+
+        bool EventHandlerSet { get; set; }
     }
 }

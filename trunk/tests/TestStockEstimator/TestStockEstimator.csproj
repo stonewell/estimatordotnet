@@ -1,19 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{09211D90-7C5D-4C85-AC56-CEAEC2734EA7}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{24C3A54A-13C6-4427-B520-F23F6468E98D}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Stock.Estimator</RootNamespace>
-    <AssemblyName>Stock.Estimation</AssemblyName>
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
+    <RootNamespace>TestStockEstimator</RootNamespace>
+    <AssemblyName>TestStockEstimator</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,20 +33,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rules\ThreeWhiteSoldiers.cs" />
-    <Compile Include="StockCategory.cs" />
-    <Compile Include="StockEstimationResult.cs" />
-    <Compile Include="StockEvent.cs" />
-    <Compile Include="StockRule.cs" />
-    <Compile Include="StockRuleIdentity.cs" />
-    <Compile Include="StockRuleRate.cs" />
-    <Compile Include="StockRuleSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\projects\Estimator.Core\Estimation.Core.csproj">
       <Project>{5DE25109-CBE4-4AED-BABA-D42A1CF87699}</Project>
       <Name>Estimation.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\stock\Stock.Estimation.Net\Stock.Estimation.Net.csproj">
+      <Project>{09211D90-7C5D-4C85-AC56-CEAEC2734EA7}</Project>
+      <Name>Stock.Estimation.Net</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -62,12 +54,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties>
-        <GtkDesignInfo />
-      </Properties>
-    </MonoDevelop>
-    <VisualStudio />
-  </ProjectExtensions>
 </Project>

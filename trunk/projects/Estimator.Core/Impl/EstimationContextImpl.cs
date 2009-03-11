@@ -46,13 +46,17 @@ namespace Estimation.Core.Impl
             EstimationData data =
                 Engine.DatabaseManager.LoadEstimationData(category_, ruleId);
 
-            data.OnAddResult -= (data_OnAddResult);
-            data.OnRemoveResult -= (data_OnRemoveResult);
-            data.OnRuleRateUpdate -= (data_OnRuleRateUpdate);
+            lock (data)
+            {
+                if (!data.EventHandlerSet)
+                {
+                    data.OnAddResult += new AddResultHandler(data_OnAddResult);
+                    data.OnRemoveResult += (data_OnRemoveResult);
+                    data.OnRuleRateUpdate += (data_OnRuleRateUpdate);
 
-            data.OnAddResult += (data_OnAddResult);
-            data.OnRemoveResult += (data_OnRemoveResult);
-            data.OnRuleRateUpdate += (data_OnRuleRateUpdate);
+                    data.EventHandlerSet = true;
+                }
+            }
 
             return data;
         }
