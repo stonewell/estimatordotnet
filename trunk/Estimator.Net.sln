@@ -23,6 +23,38 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSimpleEstimation", "tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestStockEstimator", "tests\TestStockEstimator\TestStockEstimator.csproj", "{24C3A54A-13C6-4427-B520-F23F6468E98D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6493106B-7417-498E-8127-917F76FA9236}"
+	ProjectSection(SolutionItems) = preProject
+		run.bat = run.bat
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StockData", "StockData", "{C17DC666-B031-47FC-8972-80AA833A03B7}"
+	ProjectSection(SolutionItems) = preProject
+		stock\StockData\build.bat = stock\StockData\build.bat
+		stock\StockData\人工股市介绍.mht = stock\StockData\人工股市介绍.mht
+		stock\StockData\人工股市的具体原理.doc = stock\StockData\人工股市的具体原理.doc
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{750C7275-413E-4CCF-92A6-B9794AB33FF7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "com", "com", "{B244E625-01C2-4B26-87D6-A969013B42EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "angelstone", "angelstone", "{42623CD3-A145-4FCE-94E7-9370A90E131A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "stock", "stock", "{039605BD-03FF-4BBC-A8F5-A445A3A241D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{69B7DEB7-076D-4943-A4C8-3D060408FA89}"
+	ProjectSection(SolutionItems) = preProject
+		stock\StockData\src\com\angelstone\stock\data\DayData.java = stock\StockData\src\com\angelstone\stock\data\DayData.java
+		stock\StockData\src\com\angelstone\stock\data\FiveMinData.java = stock\StockData\src\com\angelstone\stock\data\FiveMinData.java
+		stock\StockData\src\com\angelstone\stock\data\StockData.java = stock\StockData\src\com\angelstone\stock\data\StockData.java
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "io", "io", "{02D912F0-1065-4297-B6EA-7832CE8C7B43}"
+	ProjectSection(SolutionItems) = preProject
+		stock\StockData\src\com\angelstone\stock\io\StockDataReader.java = stock\StockData\src\com\angelstone\stock\io\StockDataReader.java
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -68,11 +100,18 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{09211D90-7C5D-4C85-AC56-CEAEC2734EA7} = {73A4E0A8-6A3F-41F0-87FA-B213F710C990}
 		{8733E36B-BA87-469A-AAD1-D7CD964A21D4} = {73A4E0A8-6A3F-41F0-87FA-B213F710C990}
+		{C17DC666-B031-47FC-8972-80AA833A03B7} = {73A4E0A8-6A3F-41F0-87FA-B213F710C990}
 		{5DE25109-CBE4-4AED-BABA-D42A1CF87699} = {8FAB0BDF-D4C4-425D-BA79-6C8CEB0A8433}
 		{2D6808EF-C2EE-4647-9EE4-0F12307E7978} = {8FAB0BDF-D4C4-425D-BA79-6C8CEB0A8433}
 		{330EB1F5-57EE-4836-A1B1-DFD093C4B04C} = {3FA1D640-9041-48F8-B44E-291B738646AC}
 		{C5673229-6C9C-445D-AE56-1A22C4371748} = {72A73049-5C99-4A06-B253-EB17E12FA042}
 		{24C3A54A-13C6-4427-B520-F23F6468E98D} = {72A73049-5C99-4A06-B253-EB17E12FA042}
+		{750C7275-413E-4CCF-92A6-B9794AB33FF7} = {C17DC666-B031-47FC-8972-80AA833A03B7}
+		{B244E625-01C2-4B26-87D6-A969013B42EB} = {750C7275-413E-4CCF-92A6-B9794AB33FF7}
+		{42623CD3-A145-4FCE-94E7-9370A90E131A} = {B244E625-01C2-4B26-87D6-A969013B42EB}
+		{039605BD-03FF-4BBC-A8F5-A445A3A241D1} = {42623CD3-A145-4FCE-94E7-9370A90E131A}
+		{69B7DEB7-076D-4943-A4C8-3D060408FA89} = {039605BD-03FF-4BBC-A8F5-A445A3A241D1}
+		{02D912F0-1065-4297-B6EA-7832CE8C7B43} = {039605BD-03FF-4BBC-A8F5-A445A3A241D1}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		name = Estimator.Net
