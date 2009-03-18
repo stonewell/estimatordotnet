@@ -21,15 +21,15 @@ using Estimation.Core;
 
 namespace Stock.Estimator.Rules
 {
-    public class ThreeWhiteSoldiers : StockRule
+    public class ThreeBlackCrows : StockRule
     {
-        public ThreeWhiteSoldiers()
-            : base("ThreeWhiteSoldiers", true)
+        public ThreeBlackCrows()
+            : base("ThreeBlackCrows", false)
         {
         }
 
-        protected override bool TryGenerateResult(StockEvent stockEvnt, 
-            Estimation.Core.EstimationData data, 
+        protected override bool TryGenerateResult(StockEvent stockEvnt,
+            Estimation.Core.EstimationData data,
             out StockEstimationResult result)
         {
             StockEvent lastEvent = null;
@@ -50,12 +50,12 @@ namespace Stock.Estimator.Rules
                 throw new Exception("Invalid State,LastEvent is null but count=" + count);
             }
 
-            bool valid = stockEvnt.IsYang;
+            bool valid = stockEvnt.IsYin;
 
             bool resultGenerated = false;
 
             if (lastEvent != null)
-                valid = valid & stockEvnt.Final > lastEvent.Final;
+                valid = valid & stockEvnt.Final < lastEvent.Final;
 
             if (valid)
             {
@@ -64,8 +64,8 @@ namespace Stock.Estimator.Rules
                 if (count == 3)
                 {
                     result = new StockEstimationResult();
-                    result.GoingUpRate = 100;
-                    result.GoingDownRate = 0;
+                    result.GoingUpRate = 0;
+                    result.GoingDownRate = 100;
                     result.StockRuleIdentity = StockRuleIdentity;
                     result.StockCategory = stockEvnt.StockCategory;
                     result.ClearPriceRange();

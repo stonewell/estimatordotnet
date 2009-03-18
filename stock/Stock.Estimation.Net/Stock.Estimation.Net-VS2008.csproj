@@ -63,6 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\GoingDownThreeSteps.cs" />
+    <Compile Include="Rules\GoingUpThreeStep.cs" />
+    <Compile Include="Rules\OneYangBetweenTwoYin.cs" />
+    <Compile Include="Rules\OneYinBetweenTwoYangs.cs" />
+    <Compile Include="Rules\ThreeBlackCrows.cs" />
     <Compile Include="Rules\ThreeWhiteSoldiers.cs" />
     <Compile Include="StockCategory.cs" />
     <Compile Include="StockEstimationResult.cs" />

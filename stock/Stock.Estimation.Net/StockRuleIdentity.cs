@@ -42,6 +42,11 @@ namespace Stock.Estimator
         #endregion
 
         #region Override
+        public override string ToString()
+        {
+            return id_;
+        }
+
         public override bool Equals(object obj)
         {
             if (obj is StockRuleIdentity)
