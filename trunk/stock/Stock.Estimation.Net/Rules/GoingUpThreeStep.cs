@@ -21,15 +21,15 @@ using Estimation.Core;
 
 namespace Stock.Estimator.Rules
 {
-    public class ThreeWhiteSoldiers : StockRule
+    public class GoingUpThreeStep : StockRule
     {
-        public ThreeWhiteSoldiers()
-            : base("ThreeWhiteSoldiers", true)
+        public GoingUpThreeStep()
+            : base("GoingUpThreeStep", true)
         {
         }
 
-        protected override bool TryGenerateResult(StockEvent stockEvnt, 
-            Estimation.Core.EstimationData data, 
+        protected override bool TryGenerateResult(StockEvent stockEvnt,
+            Estimation.Core.EstimationData data,
             out StockEstimationResult result)
         {
             StockEvent lastEvent = null;
@@ -52,16 +52,32 @@ namespace Stock.Estimator.Rules
 
             bool valid = stockEvnt.IsYang;
 
-            bool resultGenerated = false;
+            switch (count)
+            {
+                case 0:
+                    valid = stockEvnt.IsYang;
+                    break;
+                case 1:
+                    valid = stockEvnt.IsYin;
+                    break;
+                case 2:
+                    valid = stockEvnt.IsYin;
+                    break;
+                case 3:
+                    valid = stockEvnt.IsYin;
+                    break;
+                case 4:
+                    valid = stockEvnt.IsYang;
+                    break;
+            }
 
-            if (lastEvent != null)
-                valid = valid & stockEvnt.Final > lastEvent.Final;
+            bool resultGenerated = false;
 
             if (valid)
             {
                 count++;
 
-                if (count == 3)
+                if (count == 5)
                 {
                     result = new StockEstimationResult();
                     result.GoingUpRate = 100;

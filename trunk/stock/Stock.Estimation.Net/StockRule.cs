@@ -25,12 +25,14 @@ namespace Stock.Estimator
     {
         #region Fields
         private StockRuleIdentity identity_ = null;
+        private bool detectUp_ = false;
         #endregion
 
         #region Constructors
-        public StockRule(string rulename)
+        public StockRule(string rulename, bool detectUp)
         {
             identity_ = new StockRuleIdentity(rulename);
+            detectUp_ = detectUp;
         }
         #endregion
 
@@ -51,58 +53,75 @@ namespace Stock.Estimator
             if (!(args.Event is StockEvent))
                 return HandleEventResultEnum.InvalidEvent;
 
-			StockEvent stockEvent = args.Event as StockEvent;
+            bool ruleRateUpdated = false;
 
-			EstimationContext context = args.Context;
+            StockEvent stockEvent = args.Event as StockEvent;
 
-			EstimationData data = context.GetEstimationData(identity_);
+            //Console.Error.WriteLine("0.{0} Handle Event", stockEvent.EventDateTime);
 
-            //lock (data)
+            EstimationContext context = args.Context;
+
+            EstimationData data = context.GetEstimationData(identity_);
+
+            StockRuleRate rate = new StockRuleRate();
+            rate.StockRuleIdentity = identity_;
+            rate.StockCategory = stockEvent.StockCategory;
+
+            if (data.RuleRate != null)
             {
-                //System.Console.Error.WriteLine("+++Date: {0}", stockEvent.EventDateTime);
+                rate.RawData = data.RuleRate.RawData;
+            }
 
-                StockRuleRate rate = new StockRuleRate();
-                rate.StockRuleIdentity = identity_;
-                rate.StockCategory = stockEvent.StockCategory;
-
-                if (data.RuleRate != null)
+            if (data.LastResult != null)
+            {
+                if (MatchResult(stockEvent, data.LastResult))
                 {
-                    rate.RawData = data.RuleRate.RawData;
-                }
-
-                if (data.LastResult != null)
-                {
-                    if (MatchResult(stockEvent, data.LastResult))
-                    {
-                        rate.SuccessCount++;
-                    }
-                    else
-                    {
-                        rate.FailCount++;
-                    }
-
-                    data.UpdateRuleRate(rate);
-                }
-
-                StockEstimationResult result = null;
-
-                if (TryGenerateResult(stockEvent, data, out result))
-                {
-                    data.AddResult(result);
-                    data.UpdateRuleRate(rate);
+                    rate.SuccessCount++;
                 }
                 else
                 {
-                    data.AddResult(null);
+                    rate.FailCount++;
+                }
+
+                if (!ruleRateUpdated)
+                {
+                    data.UpdateRuleRate(rate);
+                    Console.Error.WriteLine("1.{0} Update Rule Rate", stockEvent.EventDateTime);
+
+                    ruleRateUpdated = true;
                 }
             }
-			
+
+            StockEstimationResult result = null;
+
+            if (TryGenerateResult(stockEvent, data, out result))
+            {
+                data.AddResult(result);
+
+                if (!ruleRateUpdated)
+                {
+                    data.UpdateRuleRate(rate);
+
+                    Console.Error.WriteLine("2.{0} Update Rule Rate", stockEvent.EventDateTime);
+                    ruleRateUpdated = true;
+                }
+            }
+            else
+            {
+                data.AddResult(null);
+            }
+
             return HandleEventResultEnum.OK;
         }
 
         #endregion
 
-		#region Methods
+        #region Methods
+        public bool IsDetectUpRule
+        {
+            get { return detectUp_; }
+        }
+
         virtual protected bool MatchResult(StockEvent stockEvent, EstimationResult result)
         {
             StockEstimationResult stockResult = new StockEstimationResult();
@@ -135,6 +154,6 @@ namespace Stock.Estimator
         }
 
         abstract protected bool TryGenerateResult(StockEvent stockEvnt, EstimationData data, out StockEstimationResult result);
-		#endregion
+        #endregion
     }
 }

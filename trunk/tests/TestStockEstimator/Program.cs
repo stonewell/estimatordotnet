@@ -113,7 +113,23 @@ namespace TestStockEstimator
             {
                 System.Threading.Thread.Sleep(10 * 1000);
             }
+
+            System.Console.WriteLine("Max:Up={0},Down={1},Date={2},Rule={3}",
+                MaxResult.GoingUpRate, MaxResult.GoingDownRate, MaxResult.StockEvent.EventDateTime,
+                MaxResult.RuleIdentity.ToString());
+
+            if (args.Length > 0)
+            {
+                System.Console.ReadKey();
+            }
+            else
+            {
+                System.Threading.Thread.Sleep(10 * 1000);
+            }
         }
+
+        private static DateTime MaxDateTime = new DateTime(1970, 1, 1);
+        private static StockEstimationResult MaxResult = null;
 
         private static void estimator_OnAddEstimationResult(EstimationResultEventArgs args)
         {
@@ -124,11 +140,22 @@ namespace TestStockEstimator
 
             System.Console.WriteLine("Up={0},Down={1},Date={2}",
                 result.GoingUpRate, result.GoingDownRate, result.StockEvent.EventDateTime);
+
+            if (result.StockEvent.EventDateTime > MaxDateTime)
+            {
+                MaxDateTime = result.StockEvent.EventDateTime;
+                MaxResult = result;
+            }
         }
 
         private static void CreateStockRules(EstimationRuleList rulesList)
         {
             rulesList.Add(new ThreeWhiteSoldiers());
+            rulesList.Add(new OneYinBetweenTwoYangs());
+            rulesList.Add(new GoingUpThreeStep());
+            rulesList.Add(new ThreeBlackCrows());
+            rulesList.Add(new OneYangBetweenTwoYins());
+            rulesList.Add(new GoingDownThreeSteps());
         }
 
         private static void estimator_OnRuleRateUpdate(UpdateRuleRateEventArgs args)

@@ -21,15 +21,15 @@ using Estimation.Core;
 
 namespace Stock.Estimator.Rules
 {
-    public class ThreeWhiteSoldiers : StockRule
+    public class OneYangBetweenTwoYins : StockRule
     {
-        public ThreeWhiteSoldiers()
-            : base("ThreeWhiteSoldiers", true)
+        public OneYangBetweenTwoYins()
+            : base("OneYangBetweenTwoYins", false)
         {
         }
 
-        protected override bool TryGenerateResult(StockEvent stockEvnt, 
-            Estimation.Core.EstimationData data, 
+        protected override bool TryGenerateResult(StockEvent stockEvnt,
+            Estimation.Core.EstimationData data,
             out StockEstimationResult result)
         {
             StockEvent lastEvent = null;
@@ -50,12 +50,22 @@ namespace Stock.Estimator.Rules
                 throw new Exception("Invalid State,LastEvent is null but count=" + count);
             }
 
-            bool valid = stockEvnt.IsYang;
+            bool valid = stockEvnt.IsYin;
+
+            switch (count)
+            {
+                case 0:
+                    valid = stockEvnt.IsYin;
+                    break;
+                case 1:
+                    valid = stockEvnt.IsYang;
+                    break;
+                case 2:
+                    valid = stockEvnt.IsYin;
+                    break;
+            }
 
             bool resultGenerated = false;
-
-            if (lastEvent != null)
-                valid = valid & stockEvnt.Final > lastEvent.Final;
 
             if (valid)
             {
@@ -64,8 +74,8 @@ namespace Stock.Estimator.Rules
                 if (count == 3)
                 {
                     result = new StockEstimationResult();
-                    result.GoingUpRate = 100;
-                    result.GoingDownRate = 0;
+                    result.GoingUpRate = 0;
+                    result.GoingDownRate = 100;
                     result.StockRuleIdentity = StockRuleIdentity;
                     result.StockCategory = stockEvnt.StockCategory;
                     result.ClearPriceRange();
