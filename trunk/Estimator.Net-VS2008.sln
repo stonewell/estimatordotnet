@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{90A5CC9F-A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSimpleEstimation-VS2008", "tests\TestSimpleEstimation\TestSimpleEstimation-VS2008.csproj", "{C5673229-6C9C-445D-AE56-1A22C4371748}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestStockEstimator-VS2008", "tests\TestStockEstimator\TestStockEstimator-VS2008.csproj", "{24C3A54A-13C6-4427-B520-F23F6468E98D}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -41,6 +43,10 @@ Global
 		{C5673229-6C9C-445D-AE56-1A22C4371748}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5673229-6C9C-445D-AE56-1A22C4371748}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5673229-6C9C-445D-AE56-1A22C4371748}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24C3A54A-13C6-4427-B520-F23F6468E98D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24C3A54A-13C6-4427-B520-F23F6468E98D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24C3A54A-13C6-4427-B520-F23F6468E98D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24C3A54A-13C6-4427-B520-F23F6468E98D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{5DE25109-CBE4-4AED-BABA-D42A1CF87699} = {8FAB0BDF-D4C4-425D-BA79-6C8CEB0A8433}
 		{2D6808EF-C2EE-4647-9EE4-0F12307E7978} = {8FAB0BDF-D4C4-425D-BA79-6C8CEB0A8433}
 		{C5673229-6C9C-445D-AE56-1A22C4371748} = {90A5CC9F-ACB0-4B73-B2D0-184953CCE4AF}
+		{24C3A54A-13C6-4427-B520-F23F6468E98D} = {90A5CC9F-ACB0-4B73-B2D0-184953CCE4AF}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		name = Estimator.Net
