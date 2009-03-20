@@ -72,6 +72,8 @@ namespace Stock.Estimator
                 rate.RawData = data.RuleRate.RawData;
             }
 
+            rate.StockRateUpdateDate = stockEvent.EventDateTime;
+
             if (data.LastResult != null)
             {
                 if (MatchResult(stockEvent, data.LastResult))

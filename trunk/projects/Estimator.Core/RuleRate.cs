@@ -24,5 +24,6 @@ namespace Estimation.Core
     {
         EstimationCategory Category { get; }
         RuleIdentity RuleIdentity { get; }
+        DateTime RateUpdateDate { get; }
     }
 }

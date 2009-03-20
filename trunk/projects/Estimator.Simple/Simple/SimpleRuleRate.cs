@@ -27,6 +27,7 @@ namespace Estimation.Simple
         private long rate_ = 1;
         private SimpleEstimationCategory category_ = null;
         private SimpleRuleIdentity identity_ = null;
+        private DateTime ruleRateUpdateDate_ = DateTime.Now;
         #endregion
 
         #region Constructors
@@ -81,6 +82,16 @@ namespace Estimation.Simple
             get { return rate_; }
             set { rate_ = value; }
         }
+        #endregion
+
+        #region RuleRate Members
+
+
+        public DateTime RateUpdateDate
+        {
+            get { return ruleRateUpdateDate_; }
+        }
+
         #endregion
     }
 }

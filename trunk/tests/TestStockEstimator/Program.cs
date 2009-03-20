@@ -162,7 +162,8 @@ namespace TestStockEstimator
         {
             StockRuleRate rate = args.NewRate as StockRuleRate;
 
-            System.Console.Error.WriteLine("Fail={0}, Success={1}", rate.FailCount, rate.SuccessCount);
+            System.Console.Error.WriteLine("Fail={0}, Success={1}, Rule={2},{3}", 
+                rate.FailCount, rate.SuccessCount, rate.RuleIdentity, rate.RateUpdateDate);
         }
     }
 }
