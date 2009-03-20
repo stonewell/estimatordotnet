@@ -29,6 +29,7 @@ namespace Stock.Estimator
 
         private long successCount_ = 0;
         private long failCount_ = 0;
+        private DateTime rateUpdateDate_ = DateTime.Now;
         #endregion
 
 		#region Constructors
@@ -100,9 +101,20 @@ namespace Stock.Estimator
 
             }
         }
+
+        public DateTime RateUpdateDate
+        {
+            get { return StockRateUpdateDate; }
+        }
         #endregion
 
         #region Properties
+        public DateTime StockRateUpdateDate
+        {
+            get { return rateUpdateDate_; }
+            set { rateUpdateDate_ = value; }
+        }
+
         public long SuccessCount
         {
             get { return successCount_; }
